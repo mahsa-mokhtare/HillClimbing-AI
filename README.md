@@ -1,0 +1,2 @@
+HillClimbing Algorithm
+Implementation for 8Puzzle and 8Queens

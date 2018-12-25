@@ -21,29 +21,23 @@ public class Search {
         }
         return cordinateOfQueens;
     }
-    private int heuristic(ArrayList<int[]> queens,char matrix[][])
-    {
-        int cost=0;
-        for(int i=0; i<matrix.length;i++)
-        {
-            int []queenOne = queens.get(0);
+    private int heuristic(ArrayList<int[]> queens,char matrix[][]) {
+        int cost = 0;
+        for (int i = 0; i < matrix.length; i++) {
+            int[] queenOne = queens.get(0);
             int iQueenone = queenOne[0];
             int jQueenOne = queenOne[1];
 
-            for(int j=0; j<queens.size()-1;i++)
-            {
-                if(i==j) {
+            for (int j = 0; j < queens.size() - 1; i++) {
+                if (i == j) {
                     continue;
 
-                }
-                else
-                {
-                    int []anotherQueen=queens.get(j);
+                } else {
+                    int[] anotherQueen = queens.get(j);
                     int ianotherQueen = anotherQueen[0];
                     int janotherQueen = anotherQueen[1];
 
-                    if(iQueenone==ianotherQueen || jQueenOne==janotherQueen || iQueenone+jQueenOne==ianotherQueen+janotherQueen || iQueenone-jQueenOne==ianotherQueen-janotherQueen)
-                    {
+                    if (iQueenone == ianotherQueen || jQueenOne == janotherQueen || iQueenone + jQueenOne == ianotherQueen + janotherQueen || iQueenone - jQueenOne == ianotherQueen - janotherQueen) {
                         cost++;
                     }
                 }
@@ -52,5 +46,4 @@ public class Search {
         }
         return ++cost;
     }
-
 }

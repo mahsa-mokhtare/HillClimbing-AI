@@ -18,6 +18,7 @@ public class State {
      */
     Move moveRnadomEmptyState = new Move();
     Rules rules = new Rules();
+    Config config = new Config();
     public char[][] initialState() {
         char basicMatrix[][] = {{'1', '2', '3'}, {'4', '5', '6'}, {'7', '8', ' '}};
         return basicMatrix;
@@ -25,9 +26,10 @@ public class State {
 
     public int[] findEmptyState(char[][] matrix) {
         int[] coordinate = new int[2];
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix.length; j++) {
-                if (matrix[i][j] == ' ') {
+        char [][] tempmatrix = config.copyMatrix(matrix);
+        for (int i = 0; i < tempmatrix.length; i++) {
+            for (int j = 0; j < tempmatrix.length; j++) {
+                if (tempmatrix[i][j] == ' ') {
                     coordinate[0] = i;
                     coordinate[1] = j;
                 }
@@ -80,4 +82,12 @@ public class State {
 
 
     }
-}
+
+
+
+
+
+
+
+    }
+

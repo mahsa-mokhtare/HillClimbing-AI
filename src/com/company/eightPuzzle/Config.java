@@ -24,4 +24,27 @@ public class Config {
         return copy;
 
     }
+
+    public char[][] goalState()
+    {
+        char [][] goal = {{'1', '2', '3'}, {'4', '5', '6'}, {'7', '8', ' '}};
+        return goal;
+    }
+
+    public boolean isGoalState(char[][] matrix,char[][]goal)
+    {
+
+        for(int i=0; i<matrix.length; i++)
+        {
+            for(int j=0; j<matrix.length; j++)
+            {
+                if (matrix[i][j]!=goal[i][j])
+                {
+                    return false;
+
+                }
+            }
+        }
+        return true;
+    }
 }

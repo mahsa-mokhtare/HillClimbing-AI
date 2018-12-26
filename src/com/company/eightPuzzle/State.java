@@ -47,10 +47,9 @@ public class State {
 
 
         /*this random is for: how much that state should move*/
-        int randomNumMove = rand.nextInt(100) + 2;
+        int randomNumMove = rand.nextInt(1000) + 10;
 
 
-        System.out.println(randomNumMove);
         for (int i = 0; i < randomNumMove; i++) {
             while (!rules.moveRule(randomMatrix,findEmptyState(randomMatrix), whichMove)){
                 whichMove = rand.nextInt(4) + 1;
@@ -82,6 +81,7 @@ public class State {
 
 
     }
+
 
 
 

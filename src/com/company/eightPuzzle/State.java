@@ -47,7 +47,7 @@ public class State {
 
 
         /*this random is for: how much that state should move*/
-        int randomNumMove = rand.nextInt(1000) + 10;
+        int randomNumMove = rand.nextInt(100) + 10;
 
 
         for (int i = 0; i < randomNumMove; i++) {

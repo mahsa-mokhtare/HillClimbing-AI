@@ -9,25 +9,39 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
+        // write your code here
         Successor successor = new Successor();
         State state = new State();
         HillAlgorithm hillAlgorithm = new HillAlgorithm();
         Search search = new Search();
 
+        com.company.eightQueen.Search searchQueen = new com.company.eightQueen.Search();
+        com.company.eightQueen.State stateQueen = new com.company.eightQueen.State();
+        com.company.eightQueen.Config configQueen = new com.company.eightQueen.Config();
+
         Config config = new Config();
-        char [][] goalState = {{'1', '2', '3'}, {'4', '5', '6'}, {'7', '8', ' '}};
-        char [][] currentState={{'4', '1', '2' }, {' ', '5', '3'}, {'7', '8', '6'}};
+        char[][] goalState = {{'1', '2', '3'}, {'4', '5', '6'}, {'7', '8', ' '}};
+        char[][] currentState = {{'4', '1', '2'}, {' ', '5', '3'}, {'7', '8', '6'}};
 
-        Node node = new Node(currentState,0,search.ManhatanDistance(currentState,goalState));
+        Node node = new Node(currentState, 0, search.ManhatanDistance(currentState, goalState));
 
 
-        int []cordinate= state.findEmptyState(currentState);
-        char [][] newma = new char[3][3];
+        int[] cordinate = state.findEmptyState(currentState);
+        char[][] newma = new char[3][3];
         ArrayList<ArrayList> array = new ArrayList<>();
 
 
-       // com.company.eightPuzzle.Search search = new Search();
+        char basicMatrix[][] = {
+                {'0', '0', '0', '0','0', '0', '1', '0'},
+                {'1', '0', '0', '1','0', '0', '0', '0'},
+                {'0', '0', '0', '0','0', '0', '1', '0'},
+                {'0', '1', '0', '0','0', '0', '0', '0'},
+                {'0', '0', '0', '0','0', '0', '1', '0'},
+                {'0', '0', '0', '0','0', '0', '0', '0'},
+                {'0', '1', '0', '0','0', '0', '0', '0'},
+                {'0', '0', '0', '0','1', '0', '0', '0'}};
+        System.out.println(searchQueen.heuristic(searchQueen.findQueens(basicMatrix),basicMatrix));
+        // com.company.eightPuzzle.Search search = new Search();
 
       /*   ArrayList<ArrayList> successorss = successor.getSuccessor(currentState,goalState);
         for(int i=0;i<successorss.size();i++){
@@ -46,23 +60,37 @@ public class Main {
      /*  cordinate=state.findEmptyState(currentState);
         System.out.println(cordinate[1]);
         */
-       // System.out.println(search.ManhatanDistance(currentState,goalState));
+        // System.out.println(search.ManhatanDistance(currentState,goalState));
 
      /*  array =successor.getSuccessor(currentState,goalState);
         successor.getBestSuccessor(array);
         */
 
-     int steepestAscentSolved=0;
-     for(int i=0; i<1000;i++) {
-         char[][] init = state.makeRandomMatrix(goalState);
-         if(config.isGoalState(hillAlgorithm.simulatedAnnealing(init).state,config.goalState())){
-             steepestAscentSolved++;
-         }
+        int steepestAscentSolved = 0;
+//        for (int i = 0; i < 1000; i++) {
+//            char[][] init = state.makeRandomMatrix(goalState);
+//            if (config.isGoalState(hillAlgorithm.simulatedAnnealing(init).state, config.goalState())) {
+//                steepestAscentSolved++;
+//            }
+//
+//        }
+//
+//        System.out.println(steepestAscentSolved);
 
-     }
+
+        steepestAscentSolved = 0;
+        for (int i = 0; i < 1; i++) {
+            char[][] init = stateQueen.makeRandomMatrix(stateQueen.initialState());
+            if (searchQueen.isGoalState(hillAlgorithm.steepestAscentEightQueen(init).state)) {
+                steepestAscentSolved++;
+            }
+
+        }
 
         System.out.println(steepestAscentSolved);
 
-
     }
+
+
+
 }

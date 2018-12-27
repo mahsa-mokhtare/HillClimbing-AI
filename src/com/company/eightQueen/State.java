@@ -4,9 +4,8 @@ import java.util.Random;
 
 public class State {
 
-    Move move = new Move();
     Random rand = new Random();
-
+    Config config = new Config();
 
     public char[][] initialState() {
         char basicMatrix[][] = {
@@ -24,7 +23,7 @@ public class State {
 
     public char[][] makeRandomMatrix(char [][] basicMatrix)
     {
-        char randomMatrix[][] = basicMatrix;
+        char randomMatrix[][] = config.copyMatrix(basicMatrix);
 
 
         int x = rand.nextInt(7);

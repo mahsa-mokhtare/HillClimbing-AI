@@ -99,7 +99,7 @@ public class Successor {
     public ArrayList getRandomSuccesor(ArrayList<ArrayList> randomSuccesor) {
 
         Random random = new Random();
-        int randi = random.nextInt(randomSuccesor.size()-1);
+        int randi = random.nextInt(randomSuccesor.size());
         return randomSuccesor.get(randi);
 
     }

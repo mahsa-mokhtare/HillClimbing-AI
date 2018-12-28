@@ -24,15 +24,15 @@ public class Search {
         }
         return cordinateOfQueens;
     }
-    public int heuristic(ArrayList<int[]> queens,char matrix[][]) {
-        ArrayList<int[]> temp = config.copyList(queens);
+    public int heuristic(char matrix[][]) {
+        ArrayList<int[]> temp = config.copyList(findQueens(config.copyMatrix(matrix)));
         int cost = 0;
         for (int i = 0; i < matrix.length; i++) {
             int[] queenOne = temp.get(0);
+            temp.remove(0);
             int iQueenone = queenOne[0];
             int jQueenOne = queenOne[1];
-            //System.out.printf("%d,%d\n",iQueenone,jQueenOne);
-            for (int j = 1; j < temp.size(); j++) {
+            for (int j = 0; j < temp.size() -1; j++) {
                 if (i == j) {
                     continue;
 
@@ -40,15 +40,12 @@ public class Search {
                     int[] anotherQueen = temp.get(j);
                     int ianotherQueen = anotherQueen[0];
                     int janotherQueen = anotherQueen[1];
-                    //System.out.printf("%d,%d\n",ianotherQueen,janotherQueen);
-                    System.out.printf("%d,%d,%d,%d\n",iQueenone - ianotherQueen,jQueenOne - janotherQueen,iQueenone + jQueenOne - ianotherQueen + janotherQueen,iQueenone - jQueenOne -( ianotherQueen - janotherQueen));
                     if (iQueenone == ianotherQueen || jQueenOne == janotherQueen || iQueenone + jQueenOne == ianotherQueen + janotherQueen || iQueenone - jQueenOne == ianotherQueen - janotherQueen) {
                         cost++;
                     }
                 }
             }
-            //System.out.println("============================");
-            temp.remove(0);
+
         }
 
         return cost;
@@ -56,7 +53,7 @@ public class Search {
 
     public boolean isGoalState(char[][] matrix) {
 
-        if(heuristic(findQueens(matrix), matrix) == 0) {
+        if(heuristic(matrix) == 0) {
             return true;
         }
         return false;

@@ -1,6 +1,7 @@
 package com.company.eightQueen;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Successor {
 
@@ -14,33 +15,28 @@ public class Successor {
 
     public ArrayList<ArrayList> getSuccessor(char matrix[][])
     {
-        char [][] tempMatrix;
-        int heuristic;
+        char [][] tempMatrix = config.copyMatrix(matrix);
+
 
         char [][] matrixmove;
 
-        ArrayList<int[]> queens = search.findQueens(matrix);
+        ArrayList<int[]> queens = search.findQueens(tempMatrix);
         ArrayList<ArrayList> huersAndMatrix = new ArrayList<>();
         for(int i = 0;i<8;i++) {
-
+            int[] tempQueen = queens.get(i);
             for (int k = 1; k <= 8; k++) {
                 tempMatrix = config.copyMatrix(matrix);
-
-                if (rules.moveRule(tempMatrix, queens.get(i), k)) {
-
-                    matrixmove = move.movement(tempMatrix, queens.get(i), k);
-                    ArrayList<int[]> tempQueen  = search.findQueens(matrixmove);
-                    heuristic = search.heuristic(tempQueen, matrixmove);
-                    ArrayList temp = new ArrayList<>();
-                    state.printMatrix(matrixmove);
-                    System.out.println(heuristic);
+                ArrayList temp = new ArrayList<>();
+                if (rules.moveRule(tempMatrix, tempQueen, k)) {
+                    int heuristic;
+                    matrixmove = move.movement(tempMatrix, tempQueen, k);
+                    heuristic = search.heuristic(matrixmove);
                     temp.add(matrixmove);
                     temp.add(heuristic);
                     huersAndMatrix.add(temp);
                 }
             }
         }
-
         return huersAndMatrix;
     }
 
@@ -51,8 +47,9 @@ public class Successor {
         int index = 0;
         for(int i=0; i<successor.size();i++)
         {
-            if((int) successor.get(i).get(1)<m) {
-                m = (int) successor.get(i).get(1);
+            int tc = (int) successor.get(i).get(1);
+            if(tc < m) {
+                m = tc;
                 index = i;
             }
 
@@ -62,8 +59,34 @@ public class Successor {
 
         bestSuccessor.add(successor.get(index).get(0));
         bestSuccessor.add(successor.get(index).get(1));
-        return bestSuccessor;
+        return successor.get(index);
 
+
+    }
+
+    public ArrayList getFirstSuccessor(ArrayList<ArrayList> successor,char[][]matrix)
+    {
+        ArrayList firstSuccessor = new ArrayList();
+        int m= search.heuristic(matrix);
+        int index = 0;
+        for(int i=0; i<successor.size();i++)
+        {
+            if((int) successor.get(i).get(1)<m)
+            {
+                m= (int) successor.get(i).get(1);
+                index =i;
+            }
+        }
+        firstSuccessor.add(successor.get(index).get(0));
+        firstSuccessor.add(successor.get(index).get(1));
+        return firstSuccessor;
+
+    }
+    public ArrayList getRandomSuccesor(ArrayList<ArrayList> randomSuccesor) {
+
+        Random random = new Random();
+        int randi = random.nextInt(randomSuccesor.size());
+        return randomSuccesor.get(randi);
 
     }
 

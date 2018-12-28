@@ -23,71 +23,61 @@ public class Main {
         char[][] goalState = {{'1', '2', '3'}, {'4', '5', '6'}, {'7', '8', ' '}};
         char[][] currentState = {{'4', '1', '2'}, {' ', '5', '3'}, {'7', '8', '6'}};
 
-        Node node = new Node(currentState, 0, search.ManhatanDistance(currentState, goalState));
-
-
-        int[] cordinate = state.findEmptyState(currentState);
-        char[][] newma = new char[3][3];
-        ArrayList<ArrayList> array = new ArrayList<>();
-
-
-        char basicMatrix[][] = {
-                {'0', '0', '0', '0','0', '0', '1', '0'},
-                {'1', '0', '0', '1','0', '0', '0', '0'},
-                {'0', '0', '0', '0','0', '0', '1', '0'},
-                {'0', '1', '0', '0','0', '0', '0', '0'},
-                {'0', '0', '0', '0','0', '0', '1', '0'},
-                {'0', '0', '0', '0','0', '0', '0', '0'},
-                {'0', '1', '0', '0','0', '0', '0', '0'},
-                {'0', '0', '0', '0','1', '0', '0', '0'}};
-        System.out.println(searchQueen.heuristic(searchQueen.findQueens(basicMatrix),basicMatrix));
-        // com.company.eightPuzzle.Search search = new Search();
-
-      /*   ArrayList<ArrayList> successorss = successor.getSuccessor(currentState,goalState);
-        for(int i=0;i<successorss.size();i++){
-            state.printMatrix((char[][]) successorss.get(i).get(0));
-            System.out.println((int) successorss.get(i).get(1));
-        }
-        */
 
 
 
-       /* Move move  = new Move();
-        newma=move.movement(currentState,cordinate,4);
-        state.printMatrix(newma);
-        */
-
-     /*  cordinate=state.findEmptyState(currentState);
-        System.out.println(cordinate[1]);
-        */
-        // System.out.println(search.ManhatanDistance(currentState,goalState));
-
-     /*  array =successor.getSuccessor(currentState,goalState);
-        successor.getBestSuccessor(array);
-        */
-
+        /*
+         * Algorithms for 8puzzle
+         */
         int steepestAscentSolved = 0;
-//        for (int i = 0; i < 1000; i++) {
-//            char[][] init = state.makeRandomMatrix(goalState);
-//            if (config.isGoalState(hillAlgorithm.simulatedAnnealing(init).state, config.goalState())) {
-//                steepestAscentSolved++;
-//            }
-//
-//        }
-//
-//        System.out.println(steepestAscentSolved);
-
-
-        steepestAscentSolved = 0;
-        for (int i = 0; i < 1; i++) {
-            char[][] init = stateQueen.makeRandomMatrix(stateQueen.initialState());
-            if (searchQueen.isGoalState(hillAlgorithm.steepestAscentEightQueen(init).state)) {
+        int firstChoiceSolved = 0;
+        int simulatedAnnealingSolved = 0;
+        for (int i = 0; i < 1000; i++) {
+            char[][] init = state.makeRandomMatrix(goalState);
+            if (config.isGoalState(hillAlgorithm.steepestAscentEightPuzzle(init).state, config.goalState())) {
                 steepestAscentSolved++;
+            }
+
+            if (config.isGoalState(hillAlgorithm.firstChoiceEightPuzzle(init).state, config.goalState())) {
+                firstChoiceSolved++;
+            }
+
+            if (config.isGoalState(hillAlgorithm.simulatedAnnealingEightPuzzle(init).state, config.goalState())) {
+                simulatedAnnealingSolved++;
             }
 
         }
 
         System.out.println(steepestAscentSolved);
+        System.out.println(firstChoiceSolved);
+        System.out.println(simulatedAnnealingSolved);
+
+        /*
+         * Algorithms for 8queens
+         */
+
+        steepestAscentSolved = 0;
+        firstChoiceSolved = 0;
+        simulatedAnnealingSolved = 0;
+        for (int i = 0; i < 100; i++) {
+            char[][] init = stateQueen.makeRandomMatrix(stateQueen.initialState());
+            if (searchQueen.isGoalState(hillAlgorithm.steepestAscentEightQueen(init).state)) {
+                steepestAscentSolved++;
+            }
+
+            if (searchQueen.isGoalState(hillAlgorithm.firstChoiceEightQueens(init).state)) {
+                firstChoiceSolved++;
+            }
+
+            if (searchQueen.isGoalState(hillAlgorithm.simulatedAnnealingEightQueens(init).state)) {
+                simulatedAnnealingSolved++;
+            }
+
+        }
+
+        System.out.println(steepestAscentSolved);
+        System.out.println(firstChoiceSolved);
+        System.out.println(simulatedAnnealingSolved);
 
     }
 

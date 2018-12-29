@@ -30,8 +30,10 @@ public class HillAlgorithm {
             if(neighbor.value>= current.value)
             {
                 return current;
+
             }
             current = neighbor;
+
         }
     }
     public Node steepestAscentEightQueen(char[][]currentState) {

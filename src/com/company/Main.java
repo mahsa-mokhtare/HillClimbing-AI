@@ -43,23 +43,26 @@ public class Main {
             char[][] init = state.makeRandomMatrix(goalState);
             if (config.isGoalState(hillAlgorithm.steepestAscentEightPuzzle(init).state, config.goalState())) {
                 steepestAscentSolved++;
-                coststeepestAscentSolved = coststeepestAscentSolved + hillAlgorithm.steepestAscentEightPuzzle(init).cost;
+                coststeepestAscentSolved = coststeepestAscentSolved+hillAlgorithm.steepestAscentEightPuzzle(init).cost;
+
 
             }
 
 
             if (config.isGoalState(hillAlgorithm.firstChoiceEightPuzzle(init).state, config.goalState())) {
                 firstChoiceSolved++;
-                costfirstChoiceSolved = costfirstChoiceSolved +hillAlgorithm.firstChoiceEightPuzzle(init).cost;
+                costfirstChoiceSolved =costfirstChoiceSolved+ hillAlgorithm.firstChoiceEightPuzzle(init).cost;
 
             }
+
 
 
             if (config.isGoalState(hillAlgorithm.simulatedAnnealingEightPuzzle(init).state, config.goalState())) {
                 simulatedAnnealingSolved++;
-                costsimulatedAnnealingSolved = costsimulatedAnnealingSolved + hillAlgorithm.simulatedAnnealingEightPuzzle(init).cost;
+                costsimulatedAnnealingSolved =costsimulatedAnnealingSolved+hillAlgorithm.simulatedAnnealingEightPuzzle(init).cost;
 
             }
+
 
         }
 
@@ -108,17 +111,19 @@ public class Main {
             char[][] init = stateQueen.makeRandomMatrix(stateQueen.initialState());
             if (searchQueen.isGoalState(hillAlgorithm.steepestAscentEightQueen(init).state)) {
                 steepestAscentSolved++;
-                coststeepestAscentSolved = coststeepestAscentSolved +hillAlgorithm.steepestAscentEightQueen(init).cost;
+                coststeepestAscentSolved =coststeepestAscentSolved+hillAlgorithm.steepestAscentEightQueen(init).cost;
             }
+
 
             if (searchQueen.isGoalState(hillAlgorithm.firstChoiceEightQueens(init).state)) {
                 firstChoiceSolved++;
-                costfirstChoiceSolved = costfirstChoiceSolved + hillAlgorithm.firstChoiceEightQueens(init).cost;
+                costfirstChoiceSolved =costfirstChoiceSolved+  hillAlgorithm.firstChoiceEightQueens(init).cost;
             }
+
 
             if (searchQueen.isGoalState(hillAlgorithm.simulatedAnnealingEightQueens(init).state)) {
                 simulatedAnnealingSolved++;
-                costsimulatedAnnealingSolved = costsimulatedAnnealingSolved + hillAlgorithm.simulatedAnnealingEightQueens(init).cost;
+                costsimulatedAnnealingSolved = costsimulatedAnnealingSolved+ hillAlgorithm.simulatedAnnealingEightQueens(init).cost;
             }
 
         }
